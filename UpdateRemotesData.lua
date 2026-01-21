@@ -6,6 +6,7 @@ local axePath = game:GetService("ReplicatedStorage").TS.tool.tools.shared["axe-t
 local projPath = game:GetService("StarterPlayer").StarterPlayerScripts.TS.flame.controllers.combat["projectile-controller"]
 local rodPath = game:GetService("ReplicatedStorage").TS.tool.tools["fishing-rod"]
 local fishCtrlPath = game:GetService("StarterPlayer").StarterPlayerScripts.TS.flame.controllers.fishing["fishing-controller"]
+local netPath = game:GetService("ReplicatedStorage").TS.tool.tools.net
 local function getSource(p) local s, res = pcall(function() return decompile(p) end) return s and res or "" end
 local srcSword = getSource(swordPath)
 local m1, m2 = srcSword:match('%["hitUnit"%]%s*=%s*[^,]+,%s*%["([^"]+)"%]%s*=%s*"([^"]+)"')
@@ -29,6 +30,9 @@ local rget = srcRod:match(':Get%("([^"]+)"%).-playerLocation')
 local srcFishCtrl = getSource(fishCtrlPath)
 local fcns = srcFishCtrl:match('GetNamespace%("([^"]+)"%)')
 local fcget = srcFishCtrl:match(':Get%("([^"]+)"%):SendToServer')
+local srcNet = getSource(netPath)
+local nns = srcNet:match('GetNamespace%("([^"]+)"%)')
+local nget = srcNet:match(':Get%("([^"]+)"%):CallServerAsync')
 local output = "return {\n"
 output = output .. '    MotHitH1 = "' .. tostring(m1 or "") .. '",\n'
 output = output .. '    MotHitH2 = "' .. tostring(m2 or "") .. '",\n'
@@ -46,6 +50,7 @@ output = output .. '    KillRemote = "' .. tostring(kn1 or "") .. "/" .. tostrin
 output = output .. '    AngelRemote = "' .. tostring(rns or "") .. "/" .. tostring(rget or "") .. '",\n'
 output = output .. '    FishFarmFinishRemote = "' .. tostring(fcns or "") .. "/" .. tostring(fcget or "") .. '",\n'
 output = output .. '    shootSpellBookRemote = "' .. tostring(prns or "") .. "/" .. tostring(prbr or "") .. '",\n'
+output = output .. '    CatchRemote = "' .. tostring(nns or "") .. "/" .. tostring(nget or "") .. '",\n'
 output = output .. '    SpiritRemote = ""\n'
 output = output .. "}"
 setclipboard(output)
