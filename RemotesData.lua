@@ -15,5 +15,6 @@ return {
     AngelRemote = "bybFwzowayukxnCeCx/ecxnnzkznjuFaqtmlrjrov",
     FishFarmFinishRemote = "bybFwzowayukxnCeCx/iNxxqhXmhuflLjt",
     shootSpellBookRemote = "fLafXsVXagmlXhlc/wukvoquydkgMcywiyDwvjc",
+    CatchRemote = "itiDaqymcktboxbelgrtdltbxkGPYLsgme/pgrlnhwvwHfhhwEpgySomypbwcnqhbcqVw",
     SpiritRemote = ""
 }
